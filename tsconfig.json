@@ -9,5 +9,5 @@
       "allowJs": true,
       "sourceMap": true
   },
-  "include": ["./src"]
+  "include": ["./src", "test/index.ts"]
 }

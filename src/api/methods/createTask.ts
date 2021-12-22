@@ -134,7 +134,7 @@ const createTask = async (query: CreateTask) => {
 			}
 		}
 	} catch(err) {
-        throw new Error("Something went wrong" + err);
+        throw new Error(err);
     }
 };
 

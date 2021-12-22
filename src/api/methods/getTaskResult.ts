@@ -27,7 +27,7 @@ const getTaskResult = async (query: { clientKey: string; taskId: number }) => {
 			}
 		}
 	} catch (err) {
-        throw new Error("Something went wrong" + err);
+        throw new Error(err);
     }
 };
 

@@ -1,5 +1,23 @@
 {
   "dependencies": {
-    "got": "^12.0.0"
-  }
+    "got": "11.8.3"
+  },
+  "name": "capmonster-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "dev": "tsc && node ./compiled/test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Itsnotaka/capmonster-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Itsnotaka/capmonster-api/issues"
+  },
+  "homepage": "https://github.com/Itsnotaka/capmonster-api#readme",
+  "description": ""
 }

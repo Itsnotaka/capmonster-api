@@ -23,7 +23,7 @@ const getBalance = async (query: { clientKey: string }) => {
 			}
 		}
 	} catch (err) {
-        throw new Error("Something went wrong" + err);
+        throw new Error(err);
     }
 };
 

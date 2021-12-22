@@ -2,26 +2,20 @@ import createTask from "../api/methods/createTask";
 import getBalance from "../api/methods/getBalance";
 import getTaskResult from "../api/methods/getTaskResult";
 
-module.exports = class CapMonster {
+class CapMonster {
 	clientKey: string;
 	constructor(clientKey: string) {
 		this.clientKey = clientKey;
 	}
 
-	async createTask(
-		captchaType:
-			| "ImageToTextTask"
-			| "NoCaptchaTaskProxyless"
-			| "NoCaptchaTask"
-			| "RecaptchaV3TaskProxyless"
-			| "FunCaptchaTask"
-			| "FunCaptchaTaskProxyless"
-			| "HCaptchaTask"
-			| "HCaptchaTaskProxyless"
-			| "GeeTestTask"
-			| "GeeTestTaskProxyless"
-	) {
-		return await createTask({
-	clientKey: this.clientKey, captchaType: captchaType});
+	async getBalance() {
+		return await getBalance({ clientKey: this.clientKey });
 	}
+
+	async getTaskResult(taskId: number) {
+		return await getTaskResult({ clientKey: this.clientKey, taskId: taskId });
+	}
+		
 };
+
+export default CapMonster
