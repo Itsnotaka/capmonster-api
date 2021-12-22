@@ -119,7 +119,7 @@ const createTask = async (query: CreateTask) => {
 				json: {
 					clientKey: query.clientKey,
 					task: {
-						...query.captchaType
+						...[query.captchaType]
 					},
 				},
 			}
