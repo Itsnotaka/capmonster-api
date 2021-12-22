@@ -1,27 +1,19 @@
 import got from "got";
 import { errorCode } from "../../utilis/constant";
 
-interface CreateTask extends CaptchaType {
+interface CreateTask extends CaptchaType{
 	clientKey: string;
-	captchaType:
-		| "ImageToTextTask"
-		| "NoCaptchaTaskProxyless"
-		| "NoCaptchaTask"
-		| "RecaptchaV3TaskProxyless"
-		| "FunCaptchaTask"
-		| "FunCaptchaTaskProxyless"
-		| "HCaptchaTask"
-		| "HCaptchaTaskProxyless"
-		| "GeeTestTask"
-		| "GeeTestTaskProxyless";
+	captchaType:CaptchaType;
 }
 //define conditional types when a captcha type is selected
 type CaptchaType = {
 	ImageToTextTask: {
+		type: "ImageToTextTask";
 		captchaBody: string;
 		CapMonsterModule?: string;
 	};
 	NoCaptchaTaskProxyless: {
+		type: "NoCaptchaTaskProxyless";
 		websiteURL: string;
 		websiteKey: string;
 		recaptchaDataSValue?: string;
@@ -29,6 +21,7 @@ type CaptchaType = {
 		cookies?: string;
 	};
 	NoCaptchaTask: {
+		type: "NoCaptchaTask";
 		websiteURL: string;
 		websiteKey: string;
 		recaptchaDataSValue?: string;
@@ -41,12 +34,14 @@ type CaptchaType = {
 		cookies?: string;
 	};
 	RecaptchaV3TaskProxyless: {
+		type: "RecaptchaV3TaskProxyless";
 		websiteURL: string;
 		websiteKey: string;
 		minScore: 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9;
 		pageAction?: string;
 	};
 	FunCaptchaTask: {
+		type: "FunCaptchaTask";
 		websiteURL: string;
 		funcaptchaApiJSSubdomain?: string;
 		websiteKey: number;
@@ -60,6 +55,7 @@ type CaptchaType = {
 		cookies?: string;
 	};
 	FunCaptchaTaskProxyless: {
+		type: "FunCaptchaTaskProxyless";
 		websiteURL: string;
 		funcaptchaApiJSSubdomain?: string;
 		websiteKey: number;
@@ -68,6 +64,7 @@ type CaptchaType = {
 		cookies?: string;
 	};
 	HCaptchaTask: {
+		type: "HCaptchaTask";
 		websiteURL: string;
 		websiteKey: string;
 		isInvisible?: string;
@@ -81,6 +78,7 @@ type CaptchaType = {
 		cookies?: string;
 	};
 	HCaptchaTaskProxyless: {
+		type: "HCaptchaTaskProxyless";
 		websiteURL: string;
 		websiteKey: string;
 		isInvisible?: string;
@@ -89,6 +87,7 @@ type CaptchaType = {
 		cookies?: string;
 	};
 	GeeTestTask: {
+		type: "GeeTestTask";
 		websiteURL: string;
 		gt: string;
 		challenge: string;
@@ -102,6 +101,7 @@ type CaptchaType = {
 		userAgent?: string;
 	};
 	GeeTestTaskProxyless: {
+		type: "GeeTestTaskProxyless";
 		websiteURL: string;
 		gt: string;
 		challenge: string;
@@ -119,17 +119,7 @@ const createTask = async (query: CreateTask) => {
 				json: {
 					clientKey: query.clientKey,
 					task: {
-						type: query.captchaType,
-						...query.ImageToTextTask,
-						...query.NoCaptchaTaskProxyless,
-						...query.NoCaptchaTask,
-						...query.RecaptchaV3TaskProxyless,
-						...query.FunCaptchaTask,
-						...query.FunCaptchaTaskProxyless,
-						...query.HCaptchaTask,
-						...query.HCaptchaTaskProxyless,
-						...query.GeeTestTask,
-						...query.GeeTestTaskProxyless,
+						...query.captchaType
 					},
 				},
 			}
